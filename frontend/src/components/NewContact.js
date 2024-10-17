@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 function NewContact(props) {
     const {contacts, setContacts} = props;
+    const [address, setAddress] = useState('');
     const [name, setName] = useState('family');
 
     async function createContact(e) {
@@ -13,7 +14,8 @@ function NewContact(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name
+                name,
+                address
             })
         });
 
@@ -24,6 +26,7 @@ function NewContact(props) {
         }
 
         setName('family');
+        setAddress('');
     }
 
 	return (
@@ -34,6 +37,7 @@ function NewContact(props) {
                 <option value="work">Work</option>
                 <option value="others">Others</option>
             </select>
+            <input type='text' placeholder='Address' onChange={(e) => setAddress(e.target.value)} value={address}/>
             <button className='button green' type='submit'>Create Contact</button>
         </form>
 	);
