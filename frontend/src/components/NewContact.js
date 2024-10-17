@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function NewContact(props) {
     const {contacts, setContacts} = props;
-    const [name, setName] = useState('');
+    const [name, setName] = useState('family');
 
     async function createContact(e) {
         e.preventDefault();
@@ -23,12 +23,17 @@ function NewContact(props) {
             setContacts([...contacts, data]);
         }
 
-        setName('');
+        setName('family');
     }
 
 	return (
         <form className='new-contact' onSubmit={createContact}>
-            <input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)} value={name}/>
+            <select name="contact-category" onChange={(e) => setName(e.target.value)} value={name}>
+                <option value="family">Family</option>
+                <option value="friends">Friends</option>
+                <option value="work">Work</option>
+                <option value="others">Others</option>
+            </select>
             <button className='button green' type='submit'>Create Contact</button>
         </form>
 	);
