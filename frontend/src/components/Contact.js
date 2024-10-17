@@ -13,7 +13,7 @@ function Contact(props) {
             .catch((error) => {
                 console.error('Error:', error);
             });
-    }, []);
+    }, [contact.id]);
 
     const expandStyle = {
         display: expanded ? 'block' : 'none'

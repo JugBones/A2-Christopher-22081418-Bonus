@@ -1,138 +1,72 @@
-# README.md
+# Assignment 2 - Cloud-Based Web Application
 
-IMPORTANT: Once you've cloned this to your forked repository, ensure that you continuously update this document as you complete each task to demonstrate your ongoing progress.
+- Student Name: Christopher Alexander  
+- Student ID: 22081418
+- Shared Repository: https://github.com/JugBones/A2-Christopher-22081418.git
 
-Please include your shared repository link here:
+## Overview
+This project is a cloud-based web application built using **React**, **Node.js**, **Sequelize ORM**, **PostgreSQL**, and **Docker**. It implements a system to manage items, customers, and orders using a RESTful API. 
 
-Example:
-Choiru's shared repository: https://github.com/choiruzain-latrobe/Assignment2.git
+## Technologies Used
+- React: For the front-end user interface.
+- Node.js: Backend server framework.
+- Express: Used to create RESTful APIs.
+- Sequelize: ORM for database modeling.
+- PostgreSQL: Relational database.
+- Docker: Containerization to ensure portability and ease of deployment.
 
+## Database Schema
+The application contains three tables:
+1. Items
+   - `item_id`: Primary Key
+   - `item_name`: Name of the item
+   - `item_price`: Price of the item
 
-Make sure for **your case it is in Private**
-## Access Database
-1 **Plsql Cheat Sheet:**
-You can refer to the PostgreSQL cheat sheet [here](https://www.postgresqltutorial.com/postgresql-cheat-sheet/).
+2. Customers
+   - `customer_id`: Primary Key
+   - `customer_name`: Name of the customer
+   - `customer_email`: Email address
 
-2 **Know the Container ID:**
-To find out the container ID, execute the following command:
+3. Orders
+   - `order_id`: Primary Key
+   - `order_date`: Date of the order
+   - `customer_id`: Foreign Key referencing `Customers`
+   - `item_id`: Foreign Key referencing `Items`
+
+## API Endpoints
+### Items API
+- `GET /items`: Fetch all items.
+- `POST /items`: Create a new item.
+- `PUT /items/:itemId`: Update an item.
+- `DELETE /items/:itemId`: Delete an item.
+
+### Customers API
+- `GET /customers`: Fetch all customers.
+- `POST /customers`: Create a new customer.
+- `PUT /customers/:customerId`: Update a customer.
+- `DELETE /customers/:customerId`: Delete a customer.
+
+### Orders API
+- `GET /orders`: Fetch all orders.
+- `POST /orders`: Create a new order.
+- `PUT /orders/:orderId`: Update an order.
+- `DELETE /orders/:orderId`: Delete an order.
+
+## Front-End Components
+### ManageItems.js
+- Allows the user to create, update, delete, and view items.
+- Displays the item list with name and price.
+
+### ManageCustomers.js
+- Allows the user to create, update, delete, and view customers.
+- Displays customer name and email.
+
+### ManageOrders.js
+- Allows the user to create orders by selecting a customer and an item.
+- Displays orders with the customer and item details.
+
+## How to Run the Application
+1. **Clone the repository**:
    ```bash
-   docker ps
-    9958a3a534c9   testsystem-nginx           "/docker-entrypoint.…"   6 minutes ago   Up 6 minutes   0.0.0.0:80->80/tcp   testsystem-nginx-1
-    53121618baa4   testsystem-frontend        "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes   3000/tcp             testsystem-frontend-1
-    c89e46ac94b0   testsystem-api             "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes   5000/tcp             testsystem-api-1
-    9f4aea7cf538   postgres:15.3-alpine3.18   "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes   5432/tcp             testsystem-db-1
-   ```
-3. Running the application
-
-**docker compose command:**
-   ```bash
-   docker compose up --build
-   ```
-
-4 **Access postgreSQL in the container:**
-Once you have the container ID, you can execute the container using the following command:
-You will see the example of running the PostgreSQL inside the container.
-   ```bash
-   docker exec -it testsystem-db-1 psql -U postgres
-   choiruzain@MacMarichoy TestSystem % docker exec -it testsystem-db-1 psql -U postgres                                       
-   psql (15.3)
-   Type "help" for help.
-   
-   postgres=# \dt
-             List of relations
-    Schema |   Name   | Type  |  Owner   
-   --------+----------+-------+----------
-    public | contacts | table | postgres
-    public | phones   | table | postgres
-   (2 rows)
-  
-    postgres=# select * from contacts;
-    id |  name  |         createdAt         |         updatedAt         
-   ----+--------+---------------------------+---------------------------
-     1 | Helmut | 2024-08-08 11:57:57.88+00 | 2024-08-08 11:57:57.88+00
-    (1 row)
-    postgres=# select * from phones;
-    id | phone_type |   number    | contactId |         createdAt          |         updatedAt          
-   ----+------------+-------------+-----------+----------------------------+----------------------------
-     1 | Work       | 081431      |         1 | 2024-08-08 11:59:04.386+00 | 2024-08-08 11:59:04.386+00
-
-
-postgres=# select * from contacts;
-   ```
-Replace `container_ID` with the actual ID of the container you want to execute.
-
-## Executing API
-
-### Contact API
-
-
-1. Add contacts API  (POST)
-```bash
-http post http://localhost/api/contacts name="Choiru"
-        
-choiruzain@MacMarichoy-7 TestSystem % http post http://localhost/api/contacts name="Choiru"
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: keep-alive
-Content-Length: 102
-Content-Type: application/json; charset=utf-8
-Date: Thu, 08 Aug 2024 21:01:53 GMT
-ETag: W/"66-FmPYAaIkyQoroDwP2JsAZjWTAxs"
-Server: nginx/1.25.1
-Vary: Origin
-X-Powered-By: Express
-
-{
-"createdAt": "2024-08-08T21:01:53.017Z",
-"id": 1,
-"name": "Choiru",
-"updatedAt": "2024-08-08T21:01:53.017Z"
-}
-
-```
-2 Get contacts API  (GET)
-
-```bash
-http get http://localhost/api/contacts
-
-
-choiruzain@MacMarichoy-7 TestSystem % http get http://localhost/api/contacts
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: keep-alive
-Content-Length: 104
-Content-Type: application/json; charset=utf-8
-Date: Thu, 08 Aug 2024 21:04:58 GMT
-ETag: W/"68-V+4KuL2xahYt8YAkKG6rKdR7wHg"
-Server: nginx/1.25.1
-Vary: Origin
-X-Powered-By: Express
-
-[
-{
-"createdAt": "2024-08-08T21:01:53.017Z",
-"id": 1,
-"name": "Choiru",
-"updatedAt": "2024-08-08T21:01:53.017Z"
-}
-]
-
-
-```
-3. Show/create the API commmand to delete the contacts (DELETE)
-
-```bash
-
-
-
-
-
-```
-
-4. Show/create the API command to edit the contacts (PUT)
-```
-http get http://localhost/api/contacts/1/phones
-
-```
-
-### Phone API
+   git clone <repository-url>
+   cd <project-directory>
