@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';  // import useEffect
 import PhoneList from './PhoneList.js';
+import '../styling/Contact.css';
+
 
 function Contact(props) {
     const {contact, contacts, setContacts} = props;
@@ -35,9 +37,12 @@ function Contact(props) {
 
     return (
         <div key={contact.id} className='contact' onClick={(e) => setExpanded(!expanded)}>
-            <div className='title'>
+            <div className='contact-title'>
                 <h3>{contact.name}</h3>
                 <p>{contact.address}</p>
+            </div>
+                
+            <div className='contact-action'>    
                 <button className='button red' onClick={doDelete}>Delete Contact</button>
             </div>
 
