@@ -72,33 +72,33 @@ The application contains three tables:
    cd <project-directory>
 
 ## Task 2 Output
-1. Show the API command for “Show Contact” and provide a screenshot of the output (1 Mark)
+1. Show the API command for “Show Contact” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%202%20-%20API/API%20GET%20CONTACTS.png)
-2. Show the API command for “Add Contact” and provide a screenshot of the output (1 Mark)
+2. Show the API command for “Add Contact” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%202%20-%20API/API%20GET%20CONTACTS.png)
-3. Show the API command for “Delete Contact” and provide a screenshot of the output (1 Marks)
+3. Show the API command for “Delete Contact” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%202%20-%20API/API%20GET%20CONTACTS.png)
-4. Show the API command for “Update Contact” and provide a screenshot of the output (1 Marks)
+4. Show the API command for “Update Contact” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%202%20-%20API/API%20GET%20CONTACTS.png)
-5. Show the API command for “Show Phone” and provide a screenshot of the output (1 Mark)
+5. Show the API command for “Show Phone” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%202%20-%20API/API%20GET%20CONTACTS.png)
-6. Show the API command for “Add Phone” and provide a screenshot of the output (1 Marks)
+6. Show the API command for “Add Phone” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%202%20-%20API/API%20GET%20CONTACTS.png)
-7. Show the API command for “Delete Phone” and provide a screenshot of the output (1 Marks)
+7. Show the API command for “Delete Phone” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%202%20-%20API/API%20GET%20CONTACTS.png)
-8. Show the API command for “Update Phone” and provide a screenshot of the output (1 Marks)
+8. Show the API command for “Update Phone” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%202%20-%20API/API%20GET%20CONTACTS.png)
 
 ## Task 3 Output
-1. Show the API command for “Show Contact” and provide a screenshot of the output (1 Mark)
+1. Show the API command for “Show Contact” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%203%20-%20API/API%20GET%20CONTACTS.png)
-2. Show the API command for “Add Contact” and provide a screenshot of the output (1 Mark)
+2. Show the API command for “Add Contact” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%203%20-%20API/API%20POST%20CONTACTS.png)
-3. Show the API command for “Update Contact” and provide a screenshot of the output (1 Marks)
+3. Show the API command for “Update Contact” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%203%20-%20API/API%20PUT%20CONTACTS.png)
-4. Show the API command for “Delete Contact” and provide a screenshot of the output (1 Marks)
+4. Show the API command for “Delete Contact” and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%203%20-%20API/API%20DELETE%20CONTACTS.png)
-5. Show the API command for “Show Phone” & "Add Phone" and provide a screenshot of the output (1 Mark)
+5. Show the API command for “Show Phone” & "Add Phone" and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%203%20-%20API/API%20GET%20AND%20POST%20PHONES.png)
-6. Show the API command for “Update Phone” & "Delete Phone" and provide a screenshot of the output (1 Marks)
+6. Show the API command for “Update Phone” & "Delete Phone" and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%203%20-%20API/API%20PUT%20AND%20DELETE%20PHONES.png)
