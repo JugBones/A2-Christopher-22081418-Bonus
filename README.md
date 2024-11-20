@@ -102,3 +102,7 @@ The application contains three tables:
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%203%20-%20API/API%20GET%20AND%20POST%20PHONES.png)
 6. Show the API command for “Update Phone” & "Delete Phone" and provide a screenshot of the output 
 ![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%203%20-%20API/API%20PUT%20AND%20DELETE%20PHONES.png)
+
+## Task 4 Test 
+1. Prove of all the curl testing with the database
+![alt text](https://github.com/JugBones/A2-Christopher-22081418/blob/main/TASK%204%20-%20API/Screenshot%202024-11-20%20at%2015.02.03.png)
