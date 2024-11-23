@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
       contact_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'contacts', // References the contacts table
+          model: 'contacts', 
           key: 'id',
         },
         onDelete: 'CASCADE',
