@@ -1,16 +1,16 @@
 const db = require("../models");
-const Companies = db.companies;
+const Custs = db.custs;
 const Op = db.Sequelize.Op;
 
-// Create company
+// Create customer
 exports.create = (req, res) => {
-    const company = {
-        company_name: req.body.company_name,
-        company_address: req.body.company_address,
-        contactId: parseInt(req.params.contactId)
+    const customer = {
+        customer_name: req.body.customer_name,
+        customer_address: req.body.customer_address,
+        boothId: parseInt(req.params.boothId)
     };
 
-    Companies.create(company)
+    Custs.create(customer)
         .then(data => {
             res.send(data);
         })
@@ -21,11 +21,11 @@ exports.create = (req, res) => {
         });
 };
 
-// Get all companies associated with a contact
+// Get all custs associated with a booth
 exports.findAll = (req, res) => {
-    Companies.findAll({
+    Custs.findAll({
         where: {
-            contactId: parseInt(req.params.contactId)
+            boothId: parseInt(req.params.boothId)
         }
     })
         .then(data => {
@@ -38,12 +38,12 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Get one company by id associated with a contact
+// Get one customer by id associated with a booth
 exports.findOne = (req, res) => {
-    Companies.findOne({
+    Custs.findOne({
         where: {
-            contactId: req.params.contactId,
-            id: req.params.companyId
+            boothId: req.params.boothId,
+            id: req.params.customerId
         }
     })
         .then(data => {
@@ -56,52 +56,52 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Update one company by id associated with a contact
+// Update one customer by id associated with a booth
 exports.update = (req, res) => {
-    const id = req.params.companyId;
+    const id = req.params.customerId;
 
-    Companies.update(req.body, {
-        where: { id: id, contactId: req.params.contactId }
+    Custs.update(req.body, {
+        where: { id: id, boothId: req.params.boothId }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Company was updated successfully."
+                    message: "Customer was updated successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot update Company`
+                    message: `Cannot update Customer`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Company with id=" + id
+                message: "Error updating Customer with id=" + id
             });
         });
 };
 
-// Delete one company by id associated with a contact
+// Delete one customer by id associated with a booth
 exports.delete = (req, res) => {
-    const id = req.params.companyId;
+    const id = req.params.customerId;
 
-    Companies.destroy({
-        where: { id: id, contactId: req.params.contactId }
+    Custs.destroy({
+        where: { id: id, boothId: req.params.boothId }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Company was deleted successfully!"
+                    message: "Customer was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Company`
+                    message: `Cannot delete Customer`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Company with id=" + id
+                message: "Could not delete Customer with id=" + id
             });
         });
 };

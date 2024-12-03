@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import ContactList from './components/ContactList';
+import BoothList from './components/BoothList';
 import Stats from './components/Stats';
 import './App.css';
 
 function App() {
-    const [contacts, setContacts] = useState([]);
+    const [booths, setBooths] = useState([]);
 
-    // Fetch contacts on component mount
+    // Fetch booths on component mount
     useEffect(() => {
-        fetch('http://localhost/api/contacts')
+        fetch('http://localhost/api/booths')
             .then(response => response.json())
-            .then(data => setContacts(data))
+            .then(data => setBooths(data))
             .catch((error) => {
                 console.error('Error:', error);
             });
@@ -18,12 +18,12 @@ function App() {
 
     return (
         <div className='page'>
-            <h1>Contactor</h1>
+            <h1>Pekan Raya Jakarta Management App</h1>
 
-            {/* Render Contacts with embedded Companies */}
+            {/* Render Booths with embedded Custs */}
             <div>
-                <ContactList contacts={contacts} setContacts={setContacts} />
-                <p>Click a contact to view associated phone numbers and companies.</p>
+                <BoothList booths={booths} setBooths={setBooths} />
+                <p>Click a booth to view associated staff numbers and custs.</p>
             </div>
 
             {/* Stats component remains visible */}

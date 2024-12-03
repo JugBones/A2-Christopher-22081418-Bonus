@@ -1,19 +1,19 @@
 const db = require("../models");
-const Contacts = db.contacts;
-const Phones = db.phones;
+const Booths = db.booths;
+const Staffs = db.staffs;
 const Op = db.Sequelize.Op;
 
-// Create contact
+
 exports.create = (req, res) => {
 
     console.log(req.body); // Debug log
     
-    const contact = {
+    const booth = {
         name: req.body.name,
-        address: req.body.address
+        category: req.body.category
     };
 
-    Contacts.create(contact)
+    Booths.create(booth)
         .then(data => {
             res.send(data);
         })
@@ -25,9 +25,9 @@ exports.create = (req, res) => {
         });
 };
 
-// Get all contacts
+// Get all Booths
 exports.findAll = (req, res) => {
-    Contacts.findAll()
+    Booths.findAll()
         .then(data => {
             res.send(data);
         })
@@ -38,72 +38,72 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Get one contact by id
+// Get one booth by id
 exports.findOne = (req, res) => {
-    const id = req.params.contactId;
+    const id = req.params.boothId;
 
-    Contacts.findByPk(id)
+    Booths.findByPk(id)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Contact with id=" + id
+                message: "Error retrieving booth with id=" + id
             });
         }
     );
 };
 
-// Update one contact by id
+// Update one booth by id
 exports.update = (req, res) => {
-    const id = req.params.contactId;
+    const id = req.params.boothId;
 
-    Contacts.update(req.body, {
+    Booths.update(req.body, {
         where: { id: id }
     })
     .then(num => {
         if (num == 1) {
             res.send({
-                message: "Contact was updated successfully."
+                message: "booth was updated successfully."
             });
         } else {
             res.send({
-                message: `Cannot update Contact`
+                message: `Cannot update booth`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Error updating Contact with id=" + id
+            message: "Error updating booth with id=" + id
         });
     });
 };
 
-// Delete one contact by id
+// Delete one booth by id
 exports.delete = (req, res) => {
-    const id = parseInt(req.params.contactId);
+    const id = parseInt(req.params.boothId);
 
-    Phones.destroy({
-        where: { contactId: id }
+    Staffs.destroy({
+        where: { boothId: id }
     })
     .then(num => {
-        Contacts.destroy({
+        Booths.destroy({
             where: { id: id }
         })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Contact was deleted successfully!"
+                    message: "booth was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Contact`
+                    message: `Cannot delete booth`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Contact with id=" + id
+                message: "Could not delete booth with id=" + id
             });
         });
     });

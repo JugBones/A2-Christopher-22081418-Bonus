@@ -1,25 +1,25 @@
 const db = require("../models");
-const Phones = db.phones;
-const Contacts = db.contacts;
-const Companies = db.companies; 
+const Staffs = db.staffs;
+const Booths = db.booths;
+const Custs = db.custs; 
 const Op = db.Sequelize.Op;
 
 exports.calculate = async (req, res) => {
     try {
         // Calculate stats using async/await
-        const totalContacts = await Contacts.count();
-        const totalPhones = await Phones.count();
-        const totalCompanies = await Companies.count(); 
-        const lastUpdatedContact = await Contacts.max('updatedAt');
-        const oldestContact = await Contacts.min('createdAt');
+        const totalBooths = await Booths.count();
+        const totalStaffs = await Staffs.count();
+        const totalCusts = await Custs.count(); 
+        const lastUpdatedBooth = await Booths.max('updatedAt');
+        const oldestBooth = await Booths.min('createdAt');
 
         // Send the aggregated stats as a response
         res.send({
-            totalContacts: totalContacts,
-            totalPhones: totalPhones,
-            totalCompanies: totalCompanies, 
-            lastUpdatedContact: lastUpdatedContact,
-            oldestContact: oldestContact,
+            totalBooths: totalBooths,
+            totalStaffs: totalStaffs,
+            totalCusts: totalCusts, 
+            lastUpdatedBooth: lastUpdatedBooth,
+            oldestBooth: oldestBooth,
         });
     } catch (error) {
         console.error("Error calculating stats:", error);

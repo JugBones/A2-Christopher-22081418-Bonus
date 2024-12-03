@@ -2,24 +2,24 @@ import { useState, useEffect } from "react";
 
 function Stats() {
     const [expanded, setExpanded] = useState(false);
-    const [totalContacts, setTotalContacts] = useState(0);
-    const [totalPhones, setTotalPhones] = useState(0);
-    const [lastUpdatedContact, setLastUpdatedContact] = useState('');
-    const [oldestContact, setOldestContact] = useState('');
-    const [totalCompanies, setTotalCompanies] = useState(0); // New state for total companies
+    const [totalBooths, setTotalBooths] = useState(0);
+    const [totalStaffs, setTotalStaffs] = useState(0);
+    const [lastUpdatedBooth, setLastUpdatedBooth] = useState('');
+    const [oldestBooth, setOldestBooth] = useState('');
+    const [totalCusts, setTotalCusts] = useState(0); // New state for total custs
 
     // Fetch stats
     async function getStats() {
         try {
             const response = await fetch('http://localhost/api/stats');
             const data = await response.json();
-            setTotalContacts(data.totalContacts);
-            setTotalPhones(data.totalPhones);
-            setLastUpdatedContact(data.lastUpdatedContact);
-            setOldestContact(data.oldestContact);
-            setTotalCompanies(data.totalCompanies);
+            setTotalBooths(data.totalBooths);
+            setTotalStaffs(data.totalStaffs);
+            setTotalCusts(data.totalCusts);
+            setLastUpdatedBooth(data.lastUpdatedBooth);
+            setOldestBooth(data.oldestBooth);
         } catch (error) {
-            console.error('Error fetching contact stats:', error);
+            console.error('Error fetching booth stats:', error);
         }
     }
  
@@ -33,20 +33,20 @@ function Stats() {
             <p onClick={(e) => setExpanded(!expanded)}>{expanded ? 'Hide Stats' : 'Show Stats'}</p>
 
             <div className="stats-container" style={{ display: expanded ? 'block' : 'none' }}>
-                <p><b>Number of Contacts:</b></p>
-                <p>{totalContacts}</p>
+                <p><b>Number of Booths:</b></p>
+                <p>{totalBooths}</p>
 
-                <p><b>Number of Phones:</b></p>
-                <p>{totalPhones}</p>
+                <p><b>Number of Staffs:</b></p>
+                <p>{totalStaffs}</p>
 
-                <p><b>Newest Contact Timestamp:</b></p>
-                <p>{lastUpdatedContact}</p>
+                <p><b>Number of Custs:</b></p>
+                <p>{totalCusts}</p>
 
-                <p><b>Oldest Contact Timestamp:</b></p>
-                <p>{oldestContact}</p>
+                <p><b>Newest Booth Timestamp:</b></p>
+                <p>{lastUpdatedBooth}</p>
 
-                <p><b>Number of Companies:</b></p>
-                <p>{totalCompanies}</p> 
+                <p><b>Oldest Booth Timestamp:</b></p>
+                <p>{oldestBooth}</p>
 
                 <br />
                 <button className="button green" onClick={(e) => { getStats(); }}>Refresh</button>

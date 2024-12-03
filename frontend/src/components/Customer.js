@@ -1,46 +1,46 @@
 import { useState } from "react";
 
-function Company(props) {
-    const { company, companies, setCompanies, contact } = props;
+function Customer(props) {
+    const { customer, custs, setCusts, booth } = props;
     const [isEditing, setIsEditing] = useState(false);
-    const [companyName, setCompanyName] = useState(company.company_name);
-    const [companyAddress, setCompanyAddress] = useState(company.company_address);
+    const [customerName, setCustomerName] = useState(customer.customer_name);
+    const [customerAddress, setCustomerAddress] = useState(customer.customer_address);
 
-    async function deleteCompany() {
+    async function deleteCustomer() {
         const response = await fetch(
-            'http://localhost/api/contacts/' + contact.id + '/companies/' + company.id,
+            'http://localhost/api/booths/' + booth.id + '/custs/' + customer.id,
             {
                 method: "DELETE",
             }
         );
 
-        const newCompanies = companies.filter((c) => c.id !== company.id);
-        setCompanies(newCompanies);
+        const newCusts = custs.filter((c) => c.id !== customer.id);
+        setCusts(newCusts);
     }
 
-    async function updateCompany(e) {
+    async function updateCustomer(e) {
         e.preventDefault();
 
         const response = await fetch(
-            'http://localhost/api/contacts/' + contact.id + '/companies/' + company.id,
+            'http://localhost/api/booths/' + booth.id + '/custs/' + customer.id,
             {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    company_name: companyName,
-                    company_address: companyAddress,
+                    customer_name: customerName,
+                    customer_address: customerAddress,
                 }),
             }
         );
 
-        const updatedCompany = await response.json();
+        const updatedCustomer = await response.json();
 
-        const updatedCompanies = companies.map((c) =>
-            c.id === company.id ? updatedCompany : c
+        const updatedCusts = custs.map((c) =>
+            c.id === customer.id ? updatedCustomer : c
         );
-        setCompanies(updatedCompanies);
+        setCusts(updatedCusts);
         setIsEditing(false);
     }
 
@@ -51,19 +51,19 @@ function Company(props) {
                     <td>
                         <input
                             type="text"
-                            value={companyName}
-                            onChange={(e) => setCompanyName(e.target.value)}
+                            value={customerName}
+                            onChange={(e) => setCustomerName(e.target.value)}
                         />
                     </td>
                     <td>
                         <input
                             type="text"
-                            value={companyAddress}
-                            onChange={(e) => setCompanyAddress(e.target.value)}
+                            value={customerAddress}
+                            onChange={(e) => setCustomerAddress(e.target.value)}
                         />
                     </td>
                     <td>
-                        <button className="button green" onClick={updateCompany}>
+                        <button className="button green" onClick={updateCustomer}>
                             Save
                         </button>
                         <button className="button red" onClick={() => setIsEditing(false)}>
@@ -73,13 +73,13 @@ function Company(props) {
                 </>
             ) : (
                 <>
-                    <td>{company.company_name}</td>
-                    <td>{company.company_address}</td>
+                    <td>{customer.customer_name}</td>
+                    <td>{customer.customer_address}</td>
                     <td>
                         <button className="button blue" onClick={() => setIsEditing(true)}>
                             Edit
                         </button>
-                        <button className="button red" onClick={deleteCompany}>
+                        <button className="button red" onClick={deleteCustomer}>
                             Delete
                         </button>
                     </td>
@@ -89,4 +89,4 @@ function Company(props) {
     );
 }
 
-export default Company;
+export default Customer;
