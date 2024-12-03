@@ -1,22 +1,17 @@
-module.exports = (app) => {
-    const companies = require("../controllers/company.controller.js");
-    const router = require("express").Router();
-  
-    // Create a new company
-    router.post("/companies", companies.create);
-  
-    // Retrieve all companies
-    router.get("/companies", companies.findAll);
-  
-    // Retrieve a single company with id
-    router.get("/companies/:companyId", companies.findOne);
-  
-    // Update a company with id
-    router.put("/companies/:companyId", companies.update);
-  
-    // Delete a company with id
-    router.delete("/companies/:companyId", companies.delete);
-  
-    app.use("/api", router);
-  };
-  
+module.exports = app => {
+  const companies = require("../controllers/company.controller.js");
+
+  var router = require("express").Router();
+
+  router.post("/contacts/:contactId/companies", companies.create);
+
+  router.get("/contacts/:contactId/companies", companies.findAll);
+
+  router.get("/contacts/:contactId/companies/:companyId", companies.findOne);
+
+  router.put("/contacts/:contactId/companies/:companyId", companies.update);
+
+  router.delete("/contacts/:contactId/companies/:companyId", companies.delete);
+
+  app.use('/api', router);
+};

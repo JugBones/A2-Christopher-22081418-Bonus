@@ -1,82 +1,107 @@
 const db = require("../models");
 const Companies = db.companies;
+const Op = db.Sequelize.Op;
 
-// Create a company
+// Create company
 exports.create = (req, res) => {
-  const { company_name, company_address, contact_id } = req.body;
+    const company = {
+        company_name: req.body.company_name,
+        company_address: req.body.company_address,
+        contactId: parseInt(req.params.contactId)
+    };
 
-  // Validate request
-  if (!company_name || !company_address) {
-    res.status(400).send({ message: "Content cannot be empty!" });
-    return;
-  }
-
-  const company = {
-    company_name,
-    company_address,
-    contact_id,
-  };
-
-  Companies.create(company)
-    .then((data) => res.send(data))
-    .catch((err) => {
-      res.status(500).send({ message: err.message || "Error creating the company." });
-    });
+    Companies.create(company)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred"
+            });
+        });
 };
 
-// Get all companies
+// Get all companies associated with a contact
 exports.findAll = (req, res) => {
-  Companies.findAll()
-    .then((data) => res.send(data))
-    .catch((err) => {
-      res.status(500).send({ message: err.message || "Error retrieving companies." });
-    });
+    Companies.findAll({
+        where: {
+            contactId: parseInt(req.params.contactId)
+        }
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred"
+            });
+        });
 };
 
-// Get one company by ID
+// Get one company by id associated with a contact
 exports.findOne = (req, res) => {
-  const id = req.params.companyId;
-
-  Companies.findByPk(id)
-    .then((data) => {
-      if (data) res.send(data);
-      else res.status(404).send({ message: `Company with id=${id} not found.` });
+    Companies.findOne({
+        where: {
+            contactId: req.params.contactId,
+            id: req.params.companyId
+        }
     })
-    .catch((err) => {
-      res.status(500).send({ message: `Error retrieving company with id=${id}` });
-    });
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred"
+            });
+        });
 };
 
-// Update a company
+// Update one company by id associated with a contact
 exports.update = (req, res) => {
-  const id = req.params.companyId;
+    const id = req.params.companyId;
 
-  Companies.update(req.body, { where: { company_id: id } })
-    .then((num) => {
-      if (num == 1) {
-        res.send({ message: "Company was updated successfully." });
-      } else {
-        res.send({ message: `Cannot update company with id=${id}. Maybe company was not found or req.body is empty!` });
-      }
+    Companies.update(req.body, {
+        where: { id: id, contactId: req.params.contactId }
     })
-    .catch((err) => {
-      res.status(500).send({ message: `Error updating company with id=${id}` });
-    });
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Company was updated successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot update Company`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error updating Company with id=" + id
+            });
+        });
 };
 
-// Delete a company
+// Delete one company by id associated with a contact
 exports.delete = (req, res) => {
-  const id = req.params.companyId;
+    const id = req.params.companyId;
 
-  Companies.destroy({ where: { company_id: id } })
-    .then((num) => {
-      if (num == 1) {
-        res.send({ message: "Company was deleted successfully!" });
-      } else {
-        res.send({ message: `Cannot delete company with id=${id}. Maybe company was not found!` });
-      }
+    Companies.destroy({
+        where: { id: id, contactId: req.params.contactId }
     })
-    .catch((err) => {
-      res.status(500).send({ message: `Could not delete company with id=${id}` });
-    });
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Company was deleted successfully!"
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete Company`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete Company with id=" + id
+            });
+        });
 };
