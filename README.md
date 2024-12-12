@@ -2,6 +2,7 @@
 - Student Name: Christopher Alexander  
 - Student ID: 22081418
 - Shared Repository: https://github.com/JugBones/A2-Christopher-22081418-Bonus.git
+- Other Repository (Task 1-5) : https://github.com/JugBones/A2-Christopher-22081418.git
 
 ## Overview
 This project is a cloud-based web application built using **React**, **Node.js**, **Sequelize ORM**, **PostgreSQL**, and **Docker**. It implements a system to manage booths, customers, and staff using a RESTful API. 
